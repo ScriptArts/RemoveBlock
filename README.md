@@ -6,7 +6,7 @@ Amulet Editor用プラグイン
 AmuletEditorの`plugins/operations`に配置してください。
 
 ## 検索方法
-1.AmuletEditorを起動し、3DEditorのoperationsから`ブロック検索`を選択する。
+1.AmuletEditorを起動し、3DEditorのoperationsから`ブロック削除`を選択する。
 
 2.削除したいブロックを選択し、`削除開始`ボタンを押下する。
 
