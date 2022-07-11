@@ -81,11 +81,17 @@ def _main():
 
 
 def _check_block(source: Block, target: Block):
-    if source.base_name != target.base_name or not all(
-            target.properties.get(prop) in ["*", val.to_snbt()]
-            for prop, val in source.properties.items()
-    ):
+    if target.base_name != "light":
         return False
+
+    if source.base_name == target.base_name:
+        if len(source.properties.items()) == 0 or all(
+                target.properties.get(key).to_snbt() == val.to_snbt()
+                for key, val in source.properties.items()
+        ):
+            return True
+
+    return False
 
 
 if __name__ == '__main__':
