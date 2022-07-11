@@ -5,7 +5,7 @@ from amulet.api.block import Block
 
 def _main():
     chunk_count = 0
-    count = 1
+    count = 0
     universal_block_count = 0
     find_block_matches = []
 
@@ -76,6 +76,7 @@ def _main():
 
     world.save()
     world.close()
+    print("----------検索終了----------")
     return 0
 
 
