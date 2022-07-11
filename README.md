@@ -1,13 +1,7 @@
-# RemoveBlock
-Amulet Editor用プラグイン  
-ワールドの全ブロックから、指定したブロックをすべて削除する
+# BlockRemove
 
-## 配置場所
-AmuletEditorの`plugins/operations`に配置してください。
+## 概要
+マインクラフトのワールドのすべてのディメンションから指定したブロックを削除するソフトウェアです。
 
-## 検索方法
-1.AmuletEditorを起動し、3DEditorのoperationsから`ブロック削除`を選択する。
-
-2.削除したいブロックを選択し、`削除開始`ボタンを押下する。
-
-3.削除が完了するまで待つ。
+## 対応Minecraftバージョン
+AmuletMapEditorのライブラリを使用しているので、Java1.12およびBedrock1.7以降のすべてのバージョンをサポートしています
