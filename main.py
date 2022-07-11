@@ -13,6 +13,18 @@ def _main():
     directory = input()
     world = amulet.load_level(directory)
 
+    all_dimension_name = ""
+    # 処理を除外するディメンションの選択
+    for dimension in world.dimensions:
+        all_dimension_name += dimension + " "
+
+    print("このワールドの全ディメンション名")
+    print(all_dimension_name)
+    print("処理を除外したいディメンションがある場合は、ディメンション名を入力してください。")
+    print("複数ある場合はカンマ「,」区切りで入力してください")
+    exclude_dimension = input()
+    exclude_dimension_list = exclude_dimension.split(",")
+
     print("削除するブロックを入力してください。 例 minecraft:water[level=0]")
     find_block_str = input()
     find_block = Block.from_string_blockstate(find_block_str)
@@ -20,13 +32,17 @@ def _main():
 
     # 全てのディメンションのチャンク数を取得
     for dimension in world.dimensions:
-        chunk_count += len(list(world.all_chunk_coords(dimension)))
+        if dimension not in exclude_dimension_list:
+            chunk_count += len(list(world.all_chunk_coords(dimension)))
 
     print("ブロック削除プラグイン実行")
     print("総検索チャンク数:" + str(chunk_count))
     print("----------検索開始----------")
 
     for dimension in world.dimensions:
+        if dimension in exclude_dimension_list:
+            continue
+
         for cx, cz in world.all_chunk_coords(dimension):
             chunk = world.get_chunk(cx, cz, dimension)
 
@@ -51,7 +67,7 @@ def _main():
             chunk.changed = True
             count += 1
 
-            print(str(count) + "/" + str(chunk_count))
+            print(dimension + " " + str(count) + "/" + str(chunk_count))
 
             if count % 1000 == 0:
                 print("途中経過を保存中...")
